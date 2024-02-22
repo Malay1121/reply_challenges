@@ -17,6 +17,8 @@ def combs(a, n):
 
 for i in range(testCases):
     splittedData = linesData[0].split(' ')
+    print(splittedData)
+
     plants = int(splittedData[2])
     ground = int(splittedData[3])
     linesData.pop(0)
@@ -27,6 +29,7 @@ for i in range(testCases):
         data.append(coordinate)
         linesData.pop(0)
     combination = combs(data, plants)
+    print(len(combination))
     bestOpton = 0
     for k in range(len(combination)):
         distances = []
@@ -39,10 +42,11 @@ for i in range(testCases):
             for z in range(len(klist)):
                 second = klist[z]
                 distance = abs(second[0]-first[0]) + abs(second[1]-first[1])
-                totalDistance += distance
+                if (distance < bestOpton):
+                    break
                 distances.append(distance)
         distances.sort()
-        if (distances[0] > bestOpton):
+        if (distances != [] and distances[0] > bestOpton):
             bestOpton = distances[0]
     result.append(f'Case #{i + 1}: {bestOpton}\n')
 
